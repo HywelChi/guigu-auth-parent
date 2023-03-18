@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.system.mapper.SysMenuMapper">
+    <!--    List<SysMenu> getUserMenuListByUserId(Long id);-->
+    <select id="getUserMenuListByUserId" resultType="com.atguigu.model.system.SysMenu">
+        SELECT DISTINCT sm.*
+        FROM sys_user_role sur
+                 INNER JOIN sys_role_menu srm ON sur.role_id = srm.role_id
+                 INNER JOIN sys_menu sm ON sm.id = srm.menu_id
+        WHERE user_id = #{userId}
+          AND sm.`status` = 1
+          AND sm.is_deleted = 0
+          AND srm.is_deleted = 0
+          AND sur.is_deleted = 0
+    </select>
+</mapper>
