@@ -116,7 +116,7 @@ public class LogAspect {
             setRequestData(joinPoint, sysOperLog);
         }
         // 判断是否保存响应数据
-        if (controllerLog.isSaveResponseData() &&!StringUtils.isEmpty(jsonResult)) {
+        if (controllerLog.isSaveResponseData() && !StringUtils.isEmpty(jsonResult)) {
             sysOperLog.setJsonResult(JSON.toJSONString(jsonResult));
         }
 
