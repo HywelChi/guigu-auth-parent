@@ -11,6 +11,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +40,7 @@ public class IndexController {
 
     @PostMapping("/login")
     @ApiOperation("登录")
+    @PreAuthorize("hasAuthority('bnt.sysDept.list')")
     public Result login(@RequestBody LoginVo loginVo) {
         //获取用户名和密码
         String username = loginVo.getUsername();
